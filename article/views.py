@@ -11,3 +11,8 @@ def index(request):
     #print(homepage_article[0]['images'])
 
     return render(request,'home.html',context)
+
+def article(request,uuid):
+    context = {'article':get_article_by_uuid(uuid)}
+
+    return render(request,'article.html',context)

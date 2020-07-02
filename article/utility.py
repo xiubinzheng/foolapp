@@ -16,3 +16,11 @@ def get_homepage_article():
         for item in article['tags']:
             if item['slug'] == '10-promise':
                     return article
+
+
+def get_article_by_uuid(uuid):
+    articles_list = get_articles_via_content_api()
+    for article in articles_list:
+        if article['uuid'] == uuid:
+            return article
+
