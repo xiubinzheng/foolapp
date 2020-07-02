@@ -1,3 +1,4 @@
+import random
 import json
 
 content_file = 'data_content/content_api.json'
@@ -23,4 +24,17 @@ def get_article_by_uuid(uuid):
     for article in articles_list:
         if article['uuid'] == uuid:
             return article
+
+def get_random_articles(count):
+    articles_list = get_articles_via_content_api()
+    result = []
+
+    while len(result) < count:
+        item = random.choice(articles_list)
+        if item not in result:
+            result.append(item)
+
+    return result
+
+
 
