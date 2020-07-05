@@ -16,6 +16,7 @@ def index(request):
     return render(request,'home.html',context)
 
 def article(request,uuid):
-    context = {'article':get_article_by_uuid(uuid)}
+    context = {'article':get_article_by_uuid(uuid),
+                'stocks':get_random_stocks(count=3)}
 
     return render(request,'article.html',context)
