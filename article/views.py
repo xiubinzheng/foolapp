@@ -24,11 +24,14 @@ def index(request):
     return render(request,'home.html',context)
 
 def article(request,uuid):
+    # get random articles for read more section
+    read_more = get_random_articles(count=4)
     # get all comments from latest to earlist
     comments = [comment for comment in Comment.objects.all().filter(article_uuid=uuid).order_by('-comment_date')]
     context = {'article':get_article_by_uuid(uuid),
                 'stocks':get_random_stocks(count=3),
-                'comments':comments
+                'comments':comments,
+                'readmore':read_more
                 }
 
     return render(request,'article.html',context)

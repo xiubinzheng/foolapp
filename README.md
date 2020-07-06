@@ -10,9 +10,9 @@ We would like to thank you for taking the time to complete this project. We will
 ### General project guidelines
 * Host your project on github./
 * Create a Django app./
-* Use any publicly available python packages that you need.
+* Use any publicly available python packages that you need./
 * Use any front-end scaffolding framework and any JS libraries excluding JS frameworks (angular, react, etc) /
-* Include a startup shell script that will install any dependencies and start the application./?
+* Include a startup shell script that will install any dependencies and start the application./
 
 ### Homepage
 * The top box on the homepage should be populated with the first article in the content API with the tag where slug=10-promise./
