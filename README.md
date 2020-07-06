@@ -42,7 +42,7 @@ List of possible evaluation criteria.
 * python3 manage.py migrate
 * python3 manage.py runserver
 * depeneding on your enviroment, your pip command might be pip or pip3, if it is different just change to pip3 or vise versa.
-* samethig with python, depending on your config, it might be python3 or python on the comamnd line make sure to run it using python version 3.  
+* samething with python, depending on your config, it might be python3 or python on the comamnd line make sure to run it using python version 3.  
 * PLEASE also note that with startup.sh, for some reason If you would run into permission issue, so if you ever run into a permission issue
 * please run chmod 777 startup.sh then it should solve the problem
 
