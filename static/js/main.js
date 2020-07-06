@@ -13,6 +13,8 @@ function shuffle(arr) {
 
     return arr;
 }
+
+// calls the shuffle method above and shuffle the stock tickers.
 $('#shuffle').on('click', () => {
     $('#tickers').html(shuffle($('.ticker-row')))
 })
