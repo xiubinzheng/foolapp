@@ -27,7 +27,6 @@
                 </div>
                 <div class="card-elements">
                     <div class="card-header">
-                        line 04
                         <a href="article/{{homepage_article.uuid}}"><h3>{{homepage_article.promo}}</h3></a>
                         <p class="author">{{homepage_article.byline}} | {{homepage_article.publish_at}} </p>
                     </div>
@@ -41,12 +40,6 @@
             {% for article in random_articles %}
                 <div class="card">
                     <div class="card-image">
-                        <!--
-                        <a href="article.html">
-
-                            <img src="images/card-1.jpg" alt="">
-                        </a>
-                        -->
                     {% for image in article.images %}
                         <a href="article/{{article.uuid}}"><img src="{{image.url}}" alt="" class="img-responsive"></a>
                     {% endfor %}
