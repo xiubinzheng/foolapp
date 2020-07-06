@@ -6,6 +6,8 @@ from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from .utility import *
 from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponseRedirect, Http404
+from django.urls import reverse
 
 
 # Create your views here.
@@ -30,10 +32,11 @@ def article(request,uuid):
 
     return render(request,'article.html',context)
 
-@csrf_exempt
 def add_comment(request,uuid):
-    comment_text = request.POST.get('data')
-    if comment_text:
-        q = Comment(comment_text=comment_text, article_uuid=uuid)
-        q.save()
-        return HttpResponse(comment_text)
+    comment_input = request.POST.get('comment_input')
+    
+    if comment_input:
+        comment = Comment(article_uuid=uuid,comment_text=comment_input)
+        comment.save()
+    return HttpResponseRedirect(reverse('article', args=(uuid,)))
+

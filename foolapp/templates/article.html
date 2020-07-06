@@ -59,11 +59,21 @@
                         </div>
                         <div class="special-message">
                             {% csrf_token %}
-
                             <!--make this the comment section maybe?-->
-                            <p>Comment Here</p>
-                            <textarea id="comment-data" cols=100 rows=3></textarea>
-                            <p><a class="btn" id="add-comment">Add Comment</a></p>
+                            <div id="comment-form" class="comment-form">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <form action="{{article.uuid}}/comment" method="post">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                <div class="new-comment"><label for="comment_input">Comment Below</label></div>
+                                                <textarea required class="form-control" id="comment_input" name="comment_input" rows="3"></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </section>
                 </main>
