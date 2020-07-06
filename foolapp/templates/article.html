@@ -15,6 +15,9 @@
         <link href="/static/css/style.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
+        <p id="article-uuid" class="hidden">
+            {{article.uuid}}
+        </p>
         <div class="container top-bar article-top-bar">
             <a href="/" class="btn btn-primary">HOME</a>
         </div>
@@ -55,8 +58,12 @@
                             {{article.disclosure|safe}}
                         </div>
                         <div class="special-message">
-                            <!--make this the comment section maybe?-->
+                            {% csrf_token %}
 
+                            <!--make this the comment section maybe?-->
+                            <p>Comment Here</p>
+                            <textarea id="comment-data" cols=100 rows=3></textarea>
+                            <p><a class="btn" id="add-comment">Add Comment</a></p>
                         </div>
                     </section>
                 </main>
@@ -65,6 +72,7 @@
                         <div class="block-title">
                             <hr><h2>Stocks</h2>
                         </div>
+                        <div id="tickers">
                         {% for stock in stocks %}
                         <div class="ticker-row">
                             <div>
@@ -104,8 +112,9 @@
                             </div>
                         </div>
                         {% endfor %}
-                        
+                        </div>
                     </section>
+                    <a id="shuffle" class="btn btn-primary">Shuffle</a>
                     <section class="read-more-section">
                         <div class="block-title">
                             <hr><h2>Read More</h2>
@@ -120,9 +129,20 @@
                     </section>
                 </aside>
             </div>
+            <div id="comment-section">
+                {% for comment in comments %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div><strong>Unknown Reader</strong> said: {{comment.comment_text}}</div>
+                            <div><strong>Date Posted: </strong> {{comment.comment_date}}</div>
+                            <hr/>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-        <script src="js/jquery-3.1.1.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/main.js"></script>
+        <script src="/static/js/jquery-3.1.1.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/main.js"></script>
     </body>
 </html>
