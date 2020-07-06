@@ -2,7 +2,14 @@
 $('#add-comment').on('click', () => {
     var uuid = $.trim($("#article-uuid").text());
     var commentText = $('#comment-data').val();
-    var date = new Date();
+    var now = new Date();
+    
+    now.setHours(now.getHours());
+    var isPM = now.getHours() >= 12;
+    var isMidday = now.getHours() == 12;
+    var time =now.getMonth() +' ' +now.getDate()+' '+ [now.getHours() - (isPM && !isMidday ? 12 : 0), 
+                now.getMinutes() ].join(':') +
+            (isPM ? ' p.m.' : ' a.m.');
     if (uuid && commentText) {
 
         $.post(`/article/${uuid}/comment`, {data: commentText, 
@@ -12,7 +19,7 @@ $('#add-comment').on('click', () => {
         $('#comment-section').prepend(`<div class="row">
         <div class="col-md-6">
             <div><strong>Unknown Reader</strong> said: ${commentText}</div>
-            <div><strong>Date Posted: </strong> ${date}</div>
+            <div><strong>Date Posted: </strong> ${time}</div>
             <hr/>
         </div>
     </div>`);

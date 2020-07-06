@@ -22,9 +22,10 @@ def index(request):
     return render(request,'home.html',context)
 
 def article(request,uuid):
+    comments = [comment for comment in Comment.objects.all().filter(article_uuid=uuid).order_by('-comment_date')]
     context = {'article':get_article_by_uuid(uuid),
                 'stocks':get_random_stocks(count=3),
-                'comments':[comment for comment in Comment.objects.all().filter(article_uuid=uuid).order_by('comment_date')]
+                'comments':comments
                 }
 
     return render(request,'article.html',context)
