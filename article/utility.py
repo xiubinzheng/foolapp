@@ -69,5 +69,4 @@ def get_random_stocks(count):
         stock = random.choice(stocks_list)
         if stock not in result:
             result.append(stock)
-
     return result
