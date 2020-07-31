@@ -16,7 +16,9 @@ def get_articles_via_content_api():
     with open(content_file) as content_json_file:
         content_data = json.load(content_json_file)
     content_json_file.close()
-    return content_data.get('results')
+
+    articles_list = content_data.get('results')
+    return articles_list
 
 # get stocks from the api 
 def get_stocks_via_content_api():
@@ -27,26 +29,24 @@ def get_stocks_via_content_api():
 
 # look in the articles to find article that 
 # has slug of 10-promise and return it
-def get_homepage_article():
-    articles_list = get_articles_via_content_api()
+def get_homepage_article(articles_list):
     for article in articles_list:
         for item in article['tags']:
             if item['slug'] == '10-promise':
                     return article
-
+    if len(articles_list) > 0:
+        return articles_list[0]
 # grab the article by uuid, pretty straight forward
-def get_article_by_uuid(uuid):
-    articles_list = get_articles_via_content_api()
+def get_article_by_uuid(articles_list,uuid):
     for article in articles_list:
         if article['uuid'] == uuid:
             return article
 
 # get random articles
-def get_random_articles(count):
-    articles_list = get_articles_via_content_api()
+def get_random_articles(articles_list,count):
     result = []
 
-    homepage_article = get_homepage_article() 
+    homepage_article = get_homepage_article(articles_list) 
     # while we have less than 3 or so amount of articles,
     # keep pick a random articles, if the article was already in the 
     # result pick another one instead
