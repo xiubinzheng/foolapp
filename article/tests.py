@@ -43,5 +43,4 @@ class TestContentAPI(TestCase):
             if article_uuid in uuid_set:
                 unique_uuids = False
         self.assertEqual(uuids_are_unique,True)
-
         self.assertEqual( homepage_article_uuid in random_articles,False)

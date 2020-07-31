@@ -9,7 +9,7 @@ class Comment(models.Model):
     def __str__(self):
         return self.comment_text
 
-'''
+
 class Article(models.Model):
     promo = models.TextField()
     body = models.TextField()
@@ -27,4 +27,3 @@ class Article(models.Model):
     class meta:
         managed = False
 
-'''
