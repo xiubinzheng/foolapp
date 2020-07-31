@@ -14,8 +14,9 @@ from django.urls import reverse
 def index(request):
     # grab the homepage article, and random articles 
     #and pass to html via context 
-    homepage_article = get_homepage_article()
-    random_articles = get_random_articles(count=3)
+    articles_list = get_articles_via_content_api()
+    homepage_article = get_homepage_article(articles_list)
+    random_articles = get_random_articles(articles_list,count=3)
     context = {'homepage_article':homepage_article,
                 'random_articles':random_articles
                 }
@@ -25,10 +26,11 @@ def index(request):
 
 def article(request,uuid):
     # get random articles for read more section
-    read_more = get_random_articles(count=4)
+    articles_list = get_articles_via_content_api()
+    read_more = get_random_articles(articles_list,count=4)
     # get all comments from latest to earlist
     comments = [comment for comment in Comment.objects.all().filter(article_uuid=uuid).order_by('-comment_date')]
-    context = {'article':get_article_by_uuid(uuid),
+    context = {'article':get_article_by_uuid(articles_list,uuid),
                 'stocks':get_random_stocks(count=3),
                 'comments':comments,
                 'readmore':read_more
